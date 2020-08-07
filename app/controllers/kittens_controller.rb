@@ -15,16 +15,17 @@ class KittensController < ApplicationController
   def create
     @kitten = Kitten.create(kitten_params)
     if @kitten.save 
-      render @kittens
+      render :index, notice: 'Kitten created successfully'
     else
       redirect_to 'new', notice: 'Failed to create kitten'
     end
   end
 
   def update
-    @kitten = Kitten.update(kitten_params)
+    @kitten = Kitten.find(params[:id])
+    @kitten.update(kitten_params)
     if @kitten.save
-      render @kittens
+      render 'index'
     else
       redirect_to 'update', notice: 'Failed to update kitten'
     end
@@ -32,12 +33,18 @@ class KittensController < ApplicationController
 
   def edit
     @kitten = Kitten.find(params[:id])
-
   end
 
   def destroy
+    @kitten = Kitten.find(params[:id])
     @kitten.destroy
-    redirect_to @kittens, notice: 'Kitten successfully destroyed'
+    redirect_to kittens_path, notice: 'Kitten successfully destroyed'
+  end
+
+  private
+    
+  def kitten_params
+    params.require(:kitten).permit(:name, :age, :softness)
   end
 
 end

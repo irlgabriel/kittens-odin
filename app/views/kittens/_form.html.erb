@@ -1,0 +1,21 @@
+<div class="container" style="width: 60%">
+  <h1 class="text-center text-primary my-2">Create a new Kitten!</h1>
+  <%= form_for @kitten do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :age %>
+      <%= f.number_field :age, class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :softness %>
+      <%= f.text_field :softness, class:"form-control" %>
+    </div>
+  
+    <%= f.submit "Create", class:"text-center btn btn-primary px-4 py-2 mx-auto" %>
+  <% end %>
+</div>
