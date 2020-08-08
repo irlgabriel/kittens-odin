@@ -10,7 +10,7 @@
 
 <div class='card mx-auto my-4' style="width:60%;">
   <div class="card-body">
-    <h2 class="card-title text-primary mb-2">Name: <strong><%= kitten.name %></strong></h3>
+    <h2 class="card-title text-primary mb-2">Name: <strong><%= link_to "#{kitten.name}", kitten %></strong></h3>
     <h3 class="card-subtitle text-muted">ID: <%= kitten.id %></h3>
     <h4 class="card-text text-primary mb-2">Age: <strong><%= kitten.age %></strong></h3>
     <h4 class="card-text text-primary">Softness: <strong><%= kitten.softness %></strong></h3>

@@ -1,1 +1,4 @@
 <%= render 'form' %>
+<%= link_to @kitten, method: :delete, data: {confirm: "Are you sure you want to delete this tweet?"} do %>
+      <p class="btn btn-danger px-3 py-2 text-center card-text">Destroy</p>
+<% end %>

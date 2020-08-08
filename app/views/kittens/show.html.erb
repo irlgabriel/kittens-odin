@@ -1,9 +1,13 @@
-<h1 class="text-primary mt-2">Kitten <%= @kitten.id %></h1>
+<h1 class="text-primary mt-2 text-center">Kitten <%= @kitten.id %></h1>
 
 <hr class="my-3" />
 
 <div class='card text-center'>
-  <h3 class="text-primary mb-2">Name: <strong><%= @kitten.name %></strong></h3>
+  <h3 class="text-primary mb-2 mt-3">Name: <strong><%= @kitten.name %></strong></h3>
   <h3 class="text-primary mb-2">Age: <strong><%= @kitten.age %></strong></h3>
   <h3 class="text-primary">Softness: <strong><%= @kitten.softness %></strong></h3>
+  <p class="btn btn-warning mx-auto" style="width: 8%;"><%= link_to 'Edit', edit_kitten_path(@kitten) %></p>
+  <%= link_to @kitten, method: :delete, data: {confirm: "Are you sure you want to delete this tweet?"} do %>
+    <p class="btn btn-danger px-3 py-2 text-center card-text">Destroy</p>
+  <% end %>
 </div>

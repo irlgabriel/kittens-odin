@@ -5,19 +5,22 @@ class KittensController < ApplicationController
   end
 
   def show
-    @kitten = Kitten.find(:params[:id])
+    @kitten = Kitten.find(params[:id])
   end
 
   def index 
     @kittens = Kitten.all
+  
   end
 
   def create
     @kitten = Kitten.create(kitten_params)
     if @kitten.save 
-      render :index, notice: 'Kitten created successfully'
+      redirect_to kittens_path
+      flash[:notice] = 'Kitten created successfully'
     else
-      redirect_to 'new', notice: 'Failed to create kitten'
+      render :new
+      flash[:notice] = 'Failed to create kitten'
     end
   end
 
@@ -25,9 +28,11 @@ class KittensController < ApplicationController
     @kitten = Kitten.find(params[:id])
     @kitten.update(kitten_params)
     if @kitten.save
-      render 'index'
+      redirect_to kittens_path
+      flash[:notice] = "Kitten updated successfully"
     else
-      redirect_to 'update', notice: 'Failed to update kitten'
+      redirect_to 'update'
+      flash[:notice] = "Failed to update kitten"
     end
   end
 
@@ -38,7 +43,8 @@ class KittensController < ApplicationController
   def destroy
     @kitten = Kitten.find(params[:id])
     @kitten.destroy
-    redirect_to kittens_path, notice: 'Kitten successfully destroyed'
+    redirect_to kittens_path
+    flash[:notice] = 'Kitten successfully destroyed'
   end
 
   private
